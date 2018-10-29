@@ -1,6 +1,5 @@
-var https = require('https');
-
 module.exports = function getHTML(options, callback) {
+  var https = require('https');
   var data = "";
   console.log(options);
   https.get(options, function(response) {
@@ -8,7 +7,7 @@ module.exports = function getHTML(options, callback) {
     response.on('data', (chunk) => data += chunk);
     response.on('end', () => callback(data));
   });
-}
+};
 
 function printHTML(html) {
   console.log(html);
@@ -19,4 +18,6 @@ var requestOptions = {
   path: '/http-examples/step4.html'
 };
 
-getHTML(requestOptions, printHTML);
+// getHTML(requestOptions, printHTML);
+
+// console.log(module.exports);
