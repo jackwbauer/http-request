@@ -17,30 +17,20 @@ var leet = {
   'you' : 'j00',
 };
 
-var to1337 = function(word) {
-  const wordArr = word.split('');
-  let leetWord = '';
-  for(let i = 0; i < wordArr.length; i++) {
-    if(leet[wordArr[i] + wordArr[i + 1]]) {
-      leetWord += leet[wordArr[i] + wordArr[i + 1]];
+function print1337(html) {
+  let leetHTML = '';
+  // const htmlArr = html.split(' ');
+  for(let i = 0; i < html.length; i++) {
+    if(leet[(html[i] + html[i + 1]).toLowerCase()]) {
+      leetHTML += leet[html[i] + html[i + 1]];
       i++;
-    } else if (leet[wordArr[i] + wordArr[i + 1] + wordArr[i + 2]]) {
-      leetWord += leet[wordArr[i] + wordArr[i + 1] + wordArr[i + 2]];
+    } else if (leet[(html[i] + html[i + 1] + html[i + 2]).toLowerCase()]) {
+      leetHTML += leet[html[i] + html[i + 1] + html[i + 2]];
       i = i + 2;
     } else {
-      leetWord += leet[wordArr[i]] || wordArr[i];
+      leetHTML += leet[html[i].toLowerCase()] || html[i];
     }
   }
-  return leetWord;
-};
-
-function print1337 (html) {
-  let leetHTML = '';
-  const htmlArr = html.split(' ');
-  htmlArr.forEach((word) => {
-    console.log(word);
-    leetHTML += leet[word] || to1337(word) + ' ';
-  });
   console.log(leetHTML);
   return leetHTML;
 }
