@@ -19,16 +19,19 @@ var leet = {
 
 function print1337(html) {
   let leetHTML = '';
-  // const htmlArr = html.split(' ');
   for(let i = 0; i < html.length; i++) {
-    if(leet[(html[i] + html[i + 1]).toLowerCase()]) {
-      leetHTML += leet[html[i] + html[i + 1]];
-      i++;
-    } else if (leet[(html[i] + html[i + 1] + html[i + 2]).toLowerCase()]) {
-      leetHTML += leet[html[i] + html[i + 1] + html[i + 2]];
-      i = i + 2;
-    } else {
-      leetHTML += leet[html[i].toLowerCase()] || html[i];
+    let replaced = false;
+    for(let j = 3; j > 0; j--) {
+      let key = html.substr(i, j).toLowerCase();
+      if(leet[key.toLowerCase()]) {
+        leetHTML += leet[key];
+        i += j -1;
+        replaced = true;
+        j = 0;
+      }
+    }
+    if(!replaced) {
+      leetHTML += html[i];
     }
   }
   console.log(leetHTML);
